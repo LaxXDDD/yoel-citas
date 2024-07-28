@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Cita Previa con Yoel (littlesix)</title>
+    <style>
+        @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Solicitud de Cita Previa con Yoel (littlesix)</h4>
+                </div>
+                <div class="card-body">
+                    <form id="appointmentForm">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Fecha</label>
+                            <input type="date" class="form-control" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Hora</label>
+                            <input type="time" class="form-control" id="time" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Solicitar Cita</button>
+                    </form>
+                </div>
+            </div>
+            <div id="message" class="alert alert-success mt-4 d-none" role="alert">
+                ¡Tu solicitud ha sido enviada! Yoel (littlesix) te contactará pronto.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+
+        fetch('/api/appointments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email, date, time })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('appointmentForm').reset();
+                document.getElementById('message').classList.remove('d-none');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
