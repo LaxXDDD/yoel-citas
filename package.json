@@ -2,10 +2,7 @@
   "name": "yoel-cita",
   "version": "1.0.0",
   "description": "Aplicación para solicitar y ver citas previas con Yoel (littlesix)",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
+  "main": "api/appointments.js",
   "dependencies": {
     "express": "^4.18.2"
   },
