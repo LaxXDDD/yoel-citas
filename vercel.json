@@ -1,10 +1,15 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "api/appointments.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-      { "src": "/api/appointments", "dest": "/api/appointments.js" }
-    ]
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/app.js"
+    }
+  ]
+}
