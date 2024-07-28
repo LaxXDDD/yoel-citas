@@ -35,6 +35,11 @@ app.get('/api/appointments', (req, res) => {
   });
 });
 
+// Ruta para ver las citas programadas
+app.get('/appointments', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'appointments.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
