@@ -1,5 +1,6 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -35,9 +36,9 @@ app.get('/api/appointments', (req, res) => {
   });
 });
 
-// Ruta para ver las citas programadas
+// Ruta para servir el archivo appointments.html
 app.get('/appointments', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'appointments.html'));
+  res.sendFile(path.join(__dirname, 'views', 'appointments.html'));
 });
 
 app.listen(PORT, () => {
