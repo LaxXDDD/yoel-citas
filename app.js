@@ -15,7 +15,8 @@ app.post('/api/appointments', (req, res) => {
 
     fs.appendFile(appointmentsFile, JSON.stringify(appointment) + '\n', (err) => {
         if (err) {
-            return res.status(500).json({ success: false, message: 'Error al guardar la cita' });
+            console.log(err)
+            return res.status(500).json({ success: false, message: 'Error al guardar la cita'  });
         }
         res.json({ success: true });
     });
