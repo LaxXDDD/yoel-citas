@@ -12,8 +12,10 @@ db.serialize(() => {
   db.run("CREATE TABLE appointments (name TEXT, email TEXT, date TEXT, time TEXT)");
 });
 
-app.use(express.static('public'));
+
+
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Ruta para agregar una cita
 app.post('/api/appointments', (req, res) => {
